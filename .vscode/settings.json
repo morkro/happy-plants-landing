@@ -1,0 +1,30 @@
+{
+  "editor.formatOnSave": false,
+
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    }
+  ],
+  
+  "vetur.format.enable": true,
+  "vetur.validation.template": false,
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.scriptInitialIndent": true,
+  "vetur.format.styleInitialIndent": true,
+  "vetur.format.options.tabSize": 2
+}
