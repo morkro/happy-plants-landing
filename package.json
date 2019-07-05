@@ -11,11 +11,14 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@nuxtjs/pwa": "^2.6.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "snyk": "^1.192.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
@@ -43,5 +46,6 @@
     "stylelint-processor-html": "^1.0.0",
     "stylelint-webpack-plugin": "^0.10.5",
     "vue-jest": "^3.0.3"
-  }
+  },
+  "snyk": true
 }
