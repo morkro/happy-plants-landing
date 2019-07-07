@@ -15,6 +15,7 @@
 <style lang="postcss" scoped>
   .page-section {
     width: 100vw;
+    min-height: 30vh;
 
     & .page-section-inner {
       width: 100%;

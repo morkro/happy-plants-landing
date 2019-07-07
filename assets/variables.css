@@ -1,4 +1,5 @@
 :root {
+  /* Colors */
   --brand-green: rgb(65, 181, 158);
   --brand-green-lighten: color-mod(rgb(65, 181, 158) tint(70%));
   --brand-green-medium: color-mod(rgb(65, 181, 158) a(70%));
@@ -21,4 +22,19 @@
 
   --custom-black: #202425;
   --custom-white: #dadada;
+
+  /* Typography */
+  --text-color-base: var(--custom-black);
+  --text-color-secondary: rgba(0, 0, 0, 0.6);
+  --text-color-inverse: white;
+  --text-color-button: white;
+  --link-color: var(--text-color-base, black);
+
+  --transparency-black-light: rgba(0, 0, 0, 0.12);
+  --transparency-black-medium: rgba(0, 0, 0, 0.66);
+
+  /* Layout */
+  --max-page-width: 1024px;
+  --base-gap: 20px;
+  --border-radius: 6px;
 }

@@ -1,23 +1,13 @@
 <template>
   <div>
     <header id="app-header">
-      <div class="app-header-inner">
-        <h1 class="app-header-logo">
-          <a href="/">
-            <img
-              src="~/assets/happyplants-logo.svg"
-              alt="HappyPlants logo"
-              title="HappyPlants logo"
-            >
-          </a>
-        </h1>
-
-        <nav>
-          <ul>
-            <li><a href="/changelog">Changelog</a></li>
-          </ul>
-        </nav>
-      </div>
+      <nav class="app-header-inner">
+        <ul>
+          <li class="app-changelog">
+            <a>Changelog</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <main id="app-content">
@@ -27,8 +17,8 @@
     <footer id="app-footer">
       <div class="app-footer-inner">
         <a href="mailto:happyplants@moritz.berlin">Contact</a>  
-        <a href="https://github.com/morkro/happy-plants" target="_blank">Roadmap</a>
-        <a href="https://github.com/morkro/happy-plants/issues/new" target="_blank">Bug reporting</a>
+        <a href="https://github.com/morkro/happy-plants/projects/5" target="_blank">Roadmap</a>
+        <a href="https://github.com/morkro/happy-plants/issues" target="_blank">Bug reporting</a>
         <a href="https://happyplants.app">© {{ currentYear }} HappyPlants</a>
       </div>
     </footer>
@@ -39,15 +29,20 @@
   export default {
     data: () => ({
       currentYear: new Date().getFullYear()
-    })
+    }),
+
+    mounted () {
+      if ('Headway' in window && process.env.HEADWAY_ACCOUNT) {
+        window.Headway.init({
+          selector: ".app-changelog",
+          account: process.env.HEADWAY_ACCOUNT
+        })
+      }
+    }
   }
 </script>
 
 <style lang="postcss">
-  :root {
-    --max-page-width: 1024px;
-  }
-
   *,
   *::before,
   *::after {
@@ -57,16 +52,12 @@
   }
 
   html {
-    font-family:
-      'Source Sans Pro',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      'Helvetica Neue',
-      Arial,
-      sans-serif;
-    font-size: 16px;
+    font-family: "Asap", Open Sans, Helvetica, Arial, sans-serif;
+    font-size: var(--text-size-base);
+    font-weight: 400;
+    color: var(--text-color-base);
+    line-height: 120%;
+    text-rendering: geometricPrecision;
     word-spacing: 1px;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -75,22 +66,41 @@
     box-sizing: border-box;
   }
 
+  picture {
+    display: block;
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
   #app-header {
     width: 100vw;
+    position: absolute;
+    background: var(--transparency-black-light);
 
     & .app-header-inner {
       width: 100%;
       max-width: var(--max-page-width);
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
     }
 
-    & .app-header-logo {
-      & img {
-        width: 250px;
-        height: auto;
-      }
+    & a {
+      color: var(--text-color-inverse);
+      display: flex;
+      padding: calc(var(--base-gap) / 2);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    & ul {
+      list-style: none;
+    }
+
+    & #HW_badge_cont {
+      position: absolute;
     }
   }
 
