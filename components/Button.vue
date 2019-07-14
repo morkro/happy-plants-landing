@@ -104,6 +104,10 @@
       z-index: 0;
     }
 
+    &:hover {
+      text-decoration: underline;
+    }
+
     &:active,
     &:focus {
       outline: none;

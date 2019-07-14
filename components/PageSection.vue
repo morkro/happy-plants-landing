@@ -16,11 +16,17 @@
   .page-section {
     width: 100vw;
     min-height: 30vh;
+    position: relative;
+    padding: calc(var(--base-gap) * 6) 0;
 
     & .page-section-inner {
       width: 100%;
       max-width: var(--max-page-width);
       margin: 0 auto;
+
+      & h1 {
+        text-align: center;
+      }
     }
   }
 </style>

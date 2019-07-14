@@ -4,6 +4,7 @@
   --brand-green-lighten: color-mod(rgb(65, 181, 158) tint(70%));
   --brand-green-medium: color-mod(rgb(65, 181, 158) a(70%));
   --brand-green-low: color-mod(rgb(65, 181, 158) a(30%));
+  --brand-green-dark: color-mod(rgb(65, 181, 158) shade(10%));
 
   --brand-yellow: rgb(248, 197, 89);
   --brand-yellow-medium: color-mod(rgb(248, 197, 89) a(50%));

@@ -15,7 +15,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' }
     ],
     script: [
       { src: '//cdn.headwayapp.co/widget.js', defer: true }
