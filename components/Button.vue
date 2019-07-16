@@ -48,6 +48,7 @@
 
     computed: {
       buttonType () {
+        if (this.tag === 'a') return
         return this.type === 'submit' ? this.type : 'button'
       }
     },
@@ -71,6 +72,7 @@
     --button-focus: var(--brand-green-low);
     --button-icon: var(--text-color-button);
     --button-shadow: var(--brand-green-medium);
+    --button-font-size: var(--text-size-base);
     --text-color: var(--text-color-button);
 
     position: relative;
@@ -79,7 +81,7 @@
     justify-content: center;
     cursor: pointer;
     background: var(--button-background);
-    font-size: var(--text-size-base);
+    font-size: var(--button-font-size);
     font-weight: 500;
     text-decoration: none;
     color: var(--text-color);

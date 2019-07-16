@@ -31,6 +31,7 @@
   --text-color-button: white;
   --link-color: var(--text-color-base, black);
 
+  --transparency-white-light: rgba(255, 255, 255, 0.25);
   --transparency-black-light: rgba(0, 0, 0, 0.12);
   --transparency-black-medium: rgba(0, 0, 0, 0.66);
 
@@ -38,4 +39,5 @@
   --max-page-width: 1024px;
   --base-gap: 20px;
   --border-radius: 6px;
+  --plain-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
 }

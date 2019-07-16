@@ -26,17 +26,16 @@
           Your own houseplant database
         </v-text>
 
-        <v-text variant="paragraph">
+        <v-text>
           HappyPlants is all about creating a visual and helpful collection of your houseplants.
-          <br>
           <i>How much water does it need?</i>
           <i>During which seasons does it grow?</i>
           <i>When is it dormant? Does it require lots of sun?</i>
         </v-text>
 
-        <span class="introduction-disclaimer">
-          100% Open Source, no advertising, free to use, no "download my app", just a website.
-        </span>
+        <v-text variant="sidenote" class="introduction-disclaimer">
+          Open Source, free to use, no "download my app", just a website.
+        </v-text>
 
         <v-button
           color="yellow"
@@ -56,32 +55,99 @@
       <v-text variant="headline">
         Features
       </v-text>
+
+      <v-box>
+        foo
+      </v-box>
     </page-section>
 
     <page-section class="section-faq">
       <v-text variant="headline">
         Frequently Asked Questions
       </v-text>
+
+      <ul class="faq-list">
+        <li>
+          <v-text variant="subline">
+            Foo
+          </v-text>
+          <v-text>
+            Description
+          </v-text>
+        </li>
+
+        <li>
+          <v-text variant="subline">
+            Foo
+          </v-text>
+          <v-text>
+            Description
+          </v-text>
+        </li>
+      </ul>
     </page-section>
 
-    <page-section>
+    <page-section class="section-about">
       <v-text variant="headline">
         Who's making HappyPlants?
       </v-text>
+
+      <div class="about-content">
+        <v-box class="about-content-photo">
+          <img
+            src="~/assets/moritz.jpg"
+            alt="Photo of Moritz Kröger"
+          >
+        </v-box>
+
+        <div class="about-content-info">
+          <v-text>
+            My name is Moritz Kröger, I'm an open source engineer and plant enthusiast from Berlin.
+            <br>
+            I created HappyPlants because I wanted an easy and visual way of documenting my houseplants.
+            I started off with an Excel sheet but soon hit its limits, so I slowly created my own
+            web application.
+          </v-text>
+
+          <ul class="about-content-socialmedia">
+            <li>
+              <a href="https://www.instagram.com/morkro/" target="_blank">
+                <feather-instagram />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.moritz.berlin" target="_blank">
+                <feather-home />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.github.com/morkro" target="_blank">
+                <feather-github />
+              </a>
+            </li>
+          </ul>
+        </div>        
+      </div>
     </page-section>
   </div>
 </template>
 
 <script>
+  import { HomeIcon, InstagramIcon, GithubIcon } from 'vue-feather-icons'
   import PageSection from '~/components/PageSection'
   import Button from '~/components/Button'
   import Typography from '~/components/Typography'
+  import Box from '~/components/Box'
   export default {
     components: {
       'v-button': Button,
       'v-text': Typography,
+      'v-box': Box,
       'page-section': PageSection,
-      'feather-smartphone': () => import('vue-feather-icons/icons/SmartphoneIcon')
+      'feather-smartphone': () => import('vue-feather-icons/icons/SmartphoneIcon'),
+      'feather-instagram': InstagramIcon,
+      'feather-home': HomeIcon,
+      'feather-github': GithubIcon
     }
   }
 </script>
@@ -89,7 +155,9 @@
 <style lang="postcss">
   .page-section.section-introduction {
     background: var(--brand-green);
-    background-image: var(--background-pattern);
+    background-image: var(--topography-pattern);
+    color: var(--text-color-inverse);
+    text-shadow: 0 1px 0 var(--brand-green-dark);
 
     &::after {
       content: "";
@@ -172,12 +240,13 @@
       }
 
       & a {
+        --button-shadow: var(--brand-yellow);
         display: inline-flex;
         margin-top: calc(2 * var(--base-gap));
         box-shadow:
           0 0 8px 0 var(--brand-yellow),
           0 1px 2px 0 rgba(0, 0, 0, 0.4);
-        --button-shadow: var(--brand-yellow);
+        text-shadow: none;
       }
     }
 
@@ -187,11 +256,55 @@
       font-size: var(--text-size-xsmall);
       font-style: italic;
       color: var(--transparency-black-medium);
+      text-shadow: none;
     }
   }
 
   .section-faq {
     background: var(--brand-blue);
-    color: var(--custom-white);
+    color: white;
+
+    & h1 {
+      text-shadow: 0 3px 10px var(--brand-blue);
+    }
+  }
+
+  .section-about {
+    & h1 {
+      margin-bottom: calc(4 * var(--base-gap));
+      color: var(--brand-green);
+      text-shadow: 0 3px 10px var(--brand-green-lighten);
+    }
+
+    & .about-content {
+      display: flex;
+    }
+
+    & .about-content-photo {
+      width: 40%;
+      margin-right: calc(2 * var(--base-gap));
+
+      & img {
+        width: 100%;
+      }
+    }
+
+    & .about-content-socialmedia {
+      list-style: none;
+      display: flex;
+      margin-top: var(--base-gap);
+
+      & li:not(:last-child) {
+        margin-right: var(--base-gap);
+      }
+
+      & a:hover svg {
+        color: var(--brand-green);
+      }
+
+      & svg {
+        color: var(--text-color-base);
+      }
+    }
   }
 </style>
