@@ -1,8 +1,12 @@
 <template>
   <div>
+    <a id="skiptocontent" href="#app-content">
+      Skip to main content
+    </a>
+
     <app-header />
 
-    <main id="app-content">
+    <main id="app-content" role="main">
       <nuxt />
     </main>
 
@@ -60,5 +64,13 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  #skiptocontent {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    overflow: hidden;
+    top: -10px;
   }
 </style>

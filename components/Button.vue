@@ -95,8 +95,8 @@
       opacity: 0;
       content: "";
       position: absolute;
-      width: calc(100% - 4px);
-      height: calc(100% - 4px);
+      width: calc(100% + 8px);
+      height: calc(100% + 8px);
       top: 0;
       left: 0;
       transform: translate(-4px, -4px);

@@ -1,8 +1,11 @@
-# happy-plants-website
+# Website for HappyPlants
 
-> Website for HappyPlants
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f0cbf8d7-d4a7-4b17-87d7-31960bd2d2f8/deploy-status)](https://app.netlify.com/sites/happy-plants-website/deploys)
 
-## Build Setup
+
+This is the landing page for the [HappyPlants web application](https://github.com/morkro/happyplants).
+
+## Development
 
 ``` bash
 # install dependencies

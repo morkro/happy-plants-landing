@@ -22,7 +22,7 @@
 <style lang="postcss">
   .box {
     --box-color: var(--text-color-inverse);
-    background: var(--background-primary);
+    background: white;
     border-radius: var(--border-radius);
     box-shadow: var(--plain-shadow);
     overflow: hidden;

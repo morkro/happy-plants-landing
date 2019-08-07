@@ -51,11 +51,13 @@
   h1.typography {
     --size: 220%;
     --weight: 600;
+    line-height: var(--size);
   }
 
   h2.typography {
     --size: 150%;
     --weight: 600;
+    line-height: var(--size);
   }
   
   span.typography {

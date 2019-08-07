@@ -36,7 +36,7 @@
   --transparency-black-medium: rgba(0, 0, 0, 0.66);
 
   /* Layout */
-  --max-page-width: 1024px;
+  --max-page-width: 960px;
   --base-gap: 20px;
   --border-radius: 6px;
   --plain-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);

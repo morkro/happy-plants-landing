@@ -1,9 +1,9 @@
 <template>
-  <footer id="app-footer">
+  <footer id="app-footer" role="contentinfo">
     <div class="app-footer-inner">
       <div class="app-footer-contact">
         <v-text variant="subline">
-          Having a question or a problem? Don't hesitate to reach out!
+          Having a question or a problem?<br>Don't hesitate to reach out!
         </v-text>
 
         <div class="app-footer-contact-btn">
@@ -46,32 +46,53 @@
       <div class="app-footer-navigation">
         <ul>
           <li>
-            <v-button
-              tag="a"
-              color="transparent"
-              type="small"
-              href="https://github.com/morkro/happy-plants/projects/5"
+            <a
+              href="https://twitter.com/morkro"
               target="_blank"
+              rel="noopener"
             >
-              <template v-slot:icon>
-                <feather-map />
-              </template>
-              Roadmap
-            </v-button>
+              <feather-twitter />
+              Follow for updates
+            </a>
           </li>
           <li>
-            <v-button
-              tag="a"
-              color="transparent"
-              type="small"
+            <a
+              href="https://github.com/morkro/happy-plants/projects/5"
+              target="_blank"
+              rel="noopener"
+            >
+              <feather-map />
+              Roadmap
+            </a>
+          </li>
+          <li>
+            <a
               href="https://github.com/morkro/happy-plants/issues"
               target="_blank"
+              rel="noopener"
             >
-              <template v-slot:icon>
-                <feather-alert />
-              </template>
+              <feather-alert />
               Bug reporting
-            </v-button>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/morkro/happy-plants"
+              target="_blank"
+              rel="noopener"
+            >
+              <feather-github />
+              View Source
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              rel="noopener"
+            >
+              <feather-watch />
+              Privacy Policy
+            </a>
           </li>
         </ul>
         <v-text>
@@ -83,6 +104,7 @@
 </template>
 
 <script>
+  import { TwitterIcon, MapIcon, AlertCircleIcon, GithubIcon, WatchIcon } from 'vue-feather-icons'
   import Button from '~/components/Button'
   import Typography from '~/components/Typography'
 
@@ -90,8 +112,11 @@
     components: {
       'v-button': Button,
       'v-text': Typography,
-      'feather-map': () => import('vue-feather-icons/icons/MapIcon'),
-      'feather-alert': () => import('vue-feather-icons/icons/AlertCircleIcon')
+      'feather-twitter': TwitterIcon,
+      'feather-map': MapIcon,
+      'feather-alert': AlertCircleIcon,
+      'feather-github': GithubIcon,
+      'feather-watch': WatchIcon
     },
 
     data: () => ({
@@ -139,25 +164,20 @@
   .app-footer-inner {
     width: 100%;
     max-width: var(--max-page-width);
+    display: flex;
+    justify-content: space-between;
     margin: 0 auto;
     padding:
-      calc(3 * var(--base-gap))
-      0
-      calc(2 * var(--base-gap))
-      0;
-  }
-
-  .app-footer-contact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      calc(var(--base-gap) * 6)
+      var(--base-gap);
   }
 
   .app-footer-contact-btn {
+    display: inline-block;
     background: black;
     border-radius: var(--border-radius);
     position: relative;
-    margin: calc(3 * var(--base-gap)) 0;
+    margin: calc(2 * var(--base-gap)) 0 0;
 
     & > button {
       --button-shadow: black;
@@ -204,18 +224,28 @@
   }
 
   .app-footer-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--transparency-white-light);
-    padding-top: calc(2 * var(--base-gap));
+    text-align: right;
+
+    &,
+    & p {
+      font-size: var(--text-size-small);
+    }
 
     & ul {
       list-style: none;
-      display: flex;
+      line-height: 170%;
+      margin-bottom: var(--base-gap);
+    }
 
-      & li:not(:last-child) {
-        margin-right: var(--base-gap);
+    & a {
+      color: var(--text-color-inverse);
+      display: inline-flex;
+      align-items: center;
+
+      & svg {
+        width: var(--text-size-base);
+        height: var(--text-size-base);
+        margin-right: calc(var(--base-gap) / 2);
       }
     }
   }
