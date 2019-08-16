@@ -30,7 +30,9 @@ export default {
     { src: '@/assets/pattern.css', lang: 'postcss' }
   ],
   
-  plugins: [],
+  plugins: [
+    '~/plugins/lazy-load-directive'
+  ],
 
   modules: [
     '@nuxtjs/pwa',

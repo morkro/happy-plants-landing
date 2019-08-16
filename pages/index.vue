@@ -3,12 +3,26 @@
     <page-section class="section-introduction" aria-labelledby="introduction-heading">
       <div class="introduction-screenshot">
         <v-device>
-          <picture>
+          <picture class="screenshot-overview">
             <img
               src="~/assets/app-screenshot-overview.png"
-              alt="Screenshot of application"
+              alt="Screenshot of Overview screen"
             >
           </picture>
+
+          <!-- <picture class="screenshot-plant">
+            <img
+              src="~/assets/app-screenshot-plant.png"
+              alt="Screenshot of Plant screen"
+            >
+          </picture>
+
+          <picture class="screenshot-settings">
+            <img
+              src="~/assets/app-screenshot-settings.png"
+              alt="Screenshot of Settings screen"
+            >
+          </picture> -->
         </v-device>
       </div>
 
@@ -56,9 +70,24 @@
     </page-section>
 
     <page-section
+      class="section-what"
+      aria-labelledby="what-heading"
+      :wave-border="true"
+    >
+      <div class="what-inner">
+        <v-text id="what-heading" variant="headline">
+          What is HappyPlants?
+        </v-text>
+
+        <v-text>
+          HappyPlants is ...
+        </v-text>
+      </div>
+    </page-section>
+
+    <page-section
       class="section-features"
       aria-labelledby="features-heading"
-      :wave-border="true"
     >
       <div class="features-inner">
         <v-text id="features-heading" variant="headline">
@@ -76,9 +105,9 @@
               </v-text>
             </div>
             <div class="features-list-preview">
+              <module-sunshine :intensity="sunshineLevel" @update-plant="updateSunshineModule" />
               <v-box>
-                Sunshine
-                <br>
+                
                 Watering
                 <br>
                 Notes
@@ -140,21 +169,17 @@
             </div>
             <div class="features-list-preview">
               <v-device type="phone">
-                <picture>
-                  <img
-                    src="~/assets/app-screenshot-overview.png"
-                    alt="Screenshot of application phone"
-                  >
-                </picture>
+                <lazy-image
+                  :source="require('~/assets/app-screenshot-overview.png')"
+                  alt="Screenshot of application phone"
+                />
               </v-device>
               
               <v-device type="laptop">
-                <picture>
-                  <img
-                    src="~/assets/app-screenshot-desktop.png"
-                    alt="Screenshot of application on desktop"
-                  >
-                </picture>  
+                <lazy-image
+                  :source="require('~/assets/app-screenshot-desktop.png')"
+                  alt="Screenshot of application on desktop"
+                />
               </v-device>
             </div>
           </div> 
@@ -212,10 +237,10 @@
 
       <div class="about-content">
         <v-box class="about-content-photo">
-          <img
-            src="~/assets/moritz.jpg"
+          <lazy-image
+            :source="require('~/assets/moritz.jpg')"
             alt="Photo of Moritz Kröger"
-          >
+          />
         </v-box>
 
         <div class="about-content-info">
@@ -279,12 +304,16 @@
   import Button from '~/components/Button'
   import Typography from '~/components/Typography'
   import Box from '~/components/Box'
+  import LazyImage from '~/components/LazyImage'
+  import ModuleSunshine from '~/components/ModuleSunshine'
   export default {
     components: {
       'v-device': Device,
       'v-button': Button,
       'v-text': Typography,
       'v-box': Box,
+      'lazy-image': LazyImage,
+      'module-sunshine': ModuleSunshine,
       'page-section': PageSection,
       'feather-smartphone': () => import('vue-feather-icons/icons/SmartphoneIcon'),
       'feather-instagram': InstagramIcon,
@@ -293,6 +322,16 @@
       'feather-droplet': DropletIcon,
       'feather-sun': SunIcon,
       'feather-moon': MoonIcon
+    },
+
+    data: () => ({
+      sunshineLevel: 2
+    }),
+
+    methods: {
+      updateSunshineModule (event) {
+        this.sunshineLevel = event.level
+      }
     }
   }
 </script>
@@ -326,13 +365,25 @@
     }
 
     & .introduction-screenshot {
-      width: 325px;
-      border-radius: 20px;
-      box-shadow: 0 5px 11px rgba(0, 0, 0, 0.6);
+      --screen-width: 310px;
+      width: calc(var(--screen-width) + var(--base-gap) / 3 * 2);
+      flex: 0 0 auto;
+      position: relative;
+
+      & .device {
+        box-shadow: 0 5px 11px rgba(0, 0, 0, 0.6);
+        position: absolute;
+        width: 100%;
+      }
+
+      & .device-screen {
+        height: calc(var(--screen-width) / 100 * 177.77);
+        overflow: hidden;
+      }
 
       & picture {
+        position: absolute;
         overflow: hidden;
-        border-radius: var(--border-radius);
       }
     }
 
@@ -376,6 +427,14 @@
       font-style: italic;
       color: var(--transparency-black-medium);
       text-shadow: none;
+    }
+  }
+
+  .page-section.section-what {
+    & h1 {
+      margin-bottom: calc(4 * var(--base-gap));
+      color: var(--brand-green);
+      text-shadow: 0 3px 10px var(--brand-green-lighten);
     }
   }
 
@@ -483,6 +542,7 @@
 
     & .about-content-photo {
       width: 250px;
+      height: 250px;
       margin-right: calc(2 * var(--base-gap));
       box-shadow: 0 2px 9px 2px var(--brand-blue-low);
 

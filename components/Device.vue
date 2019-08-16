@@ -26,16 +26,21 @@
 
 <style lang="postcss" scoped>
   .device {
+    --device-radius: 20px;
     display: flex;
     flex-direction: column;
     flex: 0 0 auto;
     overflow: hidden;
+    border-radius: var(--device-radius);
+  }
+
+  .device-screen {
+    position: relative;
   }
 
   .device-phone {
     padding: 0 calc(var(--base-gap) / 3) 40px;
     background: var(--custom-black);
-    border-radius: 20px;
 
     & .device-windowbar {
       border-top-right-radius: var(--border-radius);
@@ -64,6 +69,38 @@
         &:nth-of-type(3) {
           width: 4px;
           height: 4px;
+        }
+      }
+    }
+  }
+
+  .device-laptop {
+    --device-radius: var(--border-radius);
+    background: var(--dark-grey);
+    padding: calc(var(--base-gap) / 4);
+
+    & .device-screen {
+      overflow: hidden;
+      border-bottom-right-radius: var(--device-radius);
+      border-bottom-left-radius: var(--device-radius);
+    }
+
+    & .device-windowbar {
+      height: 40px;
+      background: transparent;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      & > div {
+        --control-background: var(--custom-black);
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background: var(--control-background);
+
+        &:nth-of-type(2) {
+          margin: 0 calc(var(--base-gap) / 2);
         }
       }
     }

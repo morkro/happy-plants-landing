@@ -24,6 +24,8 @@
   --custom-black: #202425;
   --custom-white: #dadada;
 
+  --background-primary: white;
+
   /* Typography */
   --text-color-base: var(--custom-black);
   --text-color-secondary: rgba(0, 0, 0, 0.6);
@@ -40,4 +42,5 @@
   --base-gap: 20px;
   --border-radius: 6px;
   --plain-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+  --icon-size-small: 16px;
 }

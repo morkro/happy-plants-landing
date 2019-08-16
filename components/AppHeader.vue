@@ -52,16 +52,21 @@
     width: 100vw;
     position: absolute;
     z-index: 1;
+    background:
+      linear-gradient(
+        180deg,
+        var(--brand-green) 0%,
+        transparent 100%
+      );
 
     & .app-header-inner {
       width: 100%;
       max-width: var(--max-page-width);
       margin: 0 auto;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      border-bottom: 2px solid var(--brand-green-dark);
-      padding: calc(var(--base-gap) / 2) 0;
+      padding-top: var(--base-gap);
     }
 
     & .app-header-logo {
@@ -83,6 +88,7 @@
     }
 
     & nav {
+      padding-top: calc(var(--base-gap) / 2);
       padding-right: calc(var(--base-gap) / 2);
     }
 
