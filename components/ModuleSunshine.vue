@@ -119,10 +119,6 @@
       --max-sunshine-rings: 3;
       --base-sunshine-background: var(--grey);
 
-      @nest html[data-theme="dark"] & {
-        --base-sunshine-background: var(--dark-grey);
-      }
-
       position: absolute;
       left: 50%;
       top: 50%;

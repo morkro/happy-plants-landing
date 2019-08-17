@@ -27,26 +27,26 @@
       </div>
 
       <div class="introduction-content">        
-        <v-text id="introduction-heading" variant="headline">
+        <v-typography id="introduction-heading" variant="headline">
           Your own houseplant database
-        </v-text>
+        </v-typography>
 
-        <v-text>
+        <v-typography>
           HappyPlants is all about creating a visual and helpful collection of your houseplants.
-        </v-text>
+        </v-typography>
 
         <ul>
           <li>
             <feather-droplet />
-            <v-text>How much water does it need?</v-text>
+            <v-typography>How much water does it need?</v-typography>
           </li>
           <li>
             <feather-moon />
-            <v-text>During which seasons does it grow? When is it dormant?</v-text>
+            <v-typography>During which seasons does it grow? When is it dormant?</v-typography>
           </li>
           <li>
             <feather-sun />
-            <v-text>Does it require lots of sun?</v-text>
+            <v-typography>Does it require lots of sun?</v-typography>
           </li>
         </ul>
 
@@ -63,9 +63,9 @@
           Open application
         </v-button>
 
-        <v-text variant="sidenote" class="introduction-disclaimer">
+        <v-typography variant="sidenote" class="introduction-disclaimer">
           Open Source, free to use, no "download my app", just a website.
-        </v-text>
+        </v-typography>
       </div>
     </page-section>
 
@@ -75,13 +75,13 @@
       :wave-border="true"
     >
       <div class="what-inner">
-        <v-text id="what-heading" variant="headline">
+        <v-typography id="what-heading" variant="headline">
           What is HappyPlants?
-        </v-text>
+        </v-typography>
 
-        <v-text>
+        <v-typography>
           HappyPlants is ...
-        </v-text>
+        </v-typography>
       </div>
     </page-section>
 
@@ -90,29 +90,39 @@
       aria-labelledby="features-heading"
     >
       <div class="features-inner">
-        <v-text id="features-heading" variant="headline">
+        <v-typography id="features-heading" variant="headline">
           Features
-        </v-text>
+        </v-typography>
 
         <div class="features-list">
           <div class="features-list-item feature-modules">
             <div class="features-list-description">
-              <v-text variant="subline">
+              <v-typography variant="subline">
                 Different modules 
-              </v-text>
-              <v-text>
+              </v-typography>
+              <v-typography>
                 Use modules to visualise your plants individual requirements.
-              </v-text>
+              </v-typography>
             </div>
             <div class="features-list-preview">
-              <module-sunshine :intensity="sunshineLevel" @update-plant="updateSunshineModule" />
+              <module-sunshine
+                :intensity="sunshine"
+                @update-plant="updateSunshineModule"
+              />
+
+              <module-seasons
+                :seasons="seasons"
+                @update-plant="updateSeasonsModule"
+              />
+
+              <module-watering
+                :amount="waterAmount"
+                :frequency="waterFrequency"
+                @update-plant="updateWateringModule"
+              />
+              
               <v-box>
-                
-                Watering
-                <br>
                 Notes
-                <br>
-                Growth
                 <br>
               </v-box>
             </div>
@@ -120,13 +130,13 @@
 
           <div class="features-list-item feature-gallery">
             <div class="features-list-description">
-              <v-text variant="subline">
+              <v-typography variant="subline">
                 A gallery!
-              </v-text>
-              <v-text>
+              </v-typography>
+              <v-typography>
                 Upload photos over time to track progress and growth of your plant.
                 Or simply keep a gallery of beautiful shots.
-              </v-text>
+              </v-typography>
             </div>
             <div class="features-list-preview">
               <ul>
@@ -144,12 +154,12 @@
 
           <div class="features-list-item feature-tags">
             <div class="features-list-description">
-              <v-text variant="subline">
+              <v-typography variant="subline">
                 Use tags to group your houseplants
-              </v-text>
-              <v-text>
+              </v-typography>
+              <v-typography>
                 The tagging system helps you to categorise and filter your plants.
-              </v-text>
+              </v-typography>
             </div>
             <div class="features-list-preview">
               <v-box>
@@ -160,12 +170,12 @@
 
           <div class="features-list-item features-cloud">
             <div class="features-list-description">
-              <v-text variant="subline">
+              <v-typography variant="subline">
                 Backup your data in the cloud
-              </v-text>
-              <v-text>
+              </v-typography>
+              <v-typography>
                 Enable the cloud feature and you'll be able to use your accounts across multiple devices.
-              </v-text>
+              </v-typography>
             </div>
             <div class="features-list-preview">
               <v-device type="phone">
@@ -186,9 +196,9 @@
         </div>
 
         <div class="features-roadmap">
-          <v-text variant="subline">
+          <v-typography variant="subline">
             Interested to know what features are coming?
-          </v-text>
+          </v-typography>
           <a
             href="https://github.com/morkro/happy-plants/projects/5"
             target="_blank"
@@ -201,27 +211,27 @@
     </page-section>
 
     <page-section class="section-faq" aria-labelledby="faq-heading">
-      <v-text id="faq-heading" variant="headline">
+      <v-typography id="faq-heading" variant="headline">
         Frequently Asked Questions
-      </v-text>
+      </v-typography>
 
       <ul class="faq-list">
         <li>
-          <v-text variant="subline">
+          <v-typography variant="subline">
             Foo
-          </v-text>
-          <v-text>
+          </v-typography>
+          <v-typography>
             Description
-          </v-text>
+          </v-typography>
         </li>
 
         <li>
-          <v-text variant="subline">
+          <v-typography variant="subline">
             Foo
-          </v-text>
-          <v-text>
+          </v-typography>
+          <v-typography>
             Description
-          </v-text>
+          </v-typography>
         </li>
       </ul>
     </page-section>
@@ -231,9 +241,9 @@
       aria-labelledby="about-heading"
       :wave-border="true"
     >
-      <v-text id="about-heading" variant="headline">
+      <v-typography id="about-heading" variant="headline">
         Who's making HappyPlants?
-      </v-text>
+      </v-typography>
 
       <div class="about-content">
         <v-box class="about-content-photo">
@@ -244,13 +254,13 @@
         </v-box>
 
         <div class="about-content-info">
-          <v-text>
+          <v-typography>
             My name is Moritz Kröger, I'm an open source engineer and plant enthusiast from Berlin.
             <br>
             I created HappyPlants because I wanted an easy and visual way of documenting my houseplants.
             I started off with an Excel sheet but soon hit its limits, so I slowly created my own
             web application.
-          </v-text>
+          </v-typography>
 
           <ul class="about-content-socialmedia">
             <li>
@@ -296,26 +306,20 @@
     InstagramIcon,
     GithubIcon,
     DropletIcon,
+    SmartphoneIcon,
     SunIcon,
     MoonIcon
   } from 'vue-feather-icons'
-  import PageSection from '~/components/PageSection'
-  import Device from '~/components/Device'
-  import Button from '~/components/Button'
-  import Typography from '~/components/Typography'
-  import Box from '~/components/Box'
-  import LazyImage from '~/components/LazyImage'
   import ModuleSunshine from '~/components/ModuleSunshine'
+  import ModuleSeasons from '~/components/ModuleSeasons'
+  import ModuleWatering from '~/components/ModuleWatering'
+  
   export default {
     components: {
-      'v-device': Device,
-      'v-button': Button,
-      'v-text': Typography,
-      'v-box': Box,
-      'lazy-image': LazyImage,
       'module-sunshine': ModuleSunshine,
-      'page-section': PageSection,
-      'feather-smartphone': () => import('vue-feather-icons/icons/SmartphoneIcon'),
+      'module-seasons': ModuleSeasons,
+      'module-watering': ModuleWatering,
+      'feather-smartphone': SmartphoneIcon,
       'feather-instagram': InstagramIcon,
       'feather-home': HomeIcon,
       'feather-github': GithubIcon,
@@ -325,12 +329,31 @@
     },
 
     data: () => ({
-      sunshineLevel: 2
+      sunshine: 2,
+      seasons: [
+        'January', 'February', 'March',
+        'April', 'Mai', 'June',
+        'July', 'August', 'September',
+        'October', 'November', 'December'
+      ].map(month => ({ month, growth: false })),
+      waterAmount: 2,
+      waterFrequency: 'weekly'
     }),
 
     methods: {
       updateSunshineModule (event) {
-        this.sunshineLevel = event.level
+        this.sunshine = event.level
+      },
+      updateSeasonsModule (event) {
+        this.seasons = this.seasons.map(season => {
+          if (event.month === season.month) {
+            season.growth = !season.growth
+          }
+          return season
+        })
+      },
+      updateWateringModule (event) {
+        console.log(event)
       }
     }
   }

@@ -34,12 +34,12 @@
 
 <script>
   import { MoonIcon } from 'vue-feather-icons'
-  import PlantComponent from './PlantComponent'
+  import ModuleComponent from './ModuleComponent'
   export default {
     name: 'PlantSeasons',
 
     components: {
-      'plant-component': PlantComponent,
+      'plant-component': ModuleComponent,
       'feather-moon': MoonIcon
     },
 
@@ -111,8 +111,6 @@
 </script>
 
 <style lang="postcss" scoped>
-  @import "../../../styles/media-queries";
-
   .seasons-content {
     width: 100%;
   }
@@ -147,11 +145,6 @@
       &.growth button {
         --button-background: var(--brand-green-lighten);
         --button-color: var(--brand-green);
-
-        @nest html[data-theme="dark"] & {
-          --button-background: var(--brand-green-lighten);
-          --button-color: var(--brand-green);
-        }
       }
 
       &.growth-transition-to button {
@@ -166,10 +159,6 @@
         --button-color: var(--text-color-inverse);
         background: var(--brand-green);
         box-shadow: none;
-
-        @nest html[data-theme="dark"] & {
-          --button-color: var(--text-color);
-        }
 
         &::after {
           opacity: 1;
@@ -213,10 +202,5 @@
 
     --button-background: var(--grey);
     --button-color: var(--dark-grey);
-
-    @nest html[data-theme="dark"] & {
-      --button-background: var(--dark-grey);
-      --button-color: var(--grey);
-    }
   }
 </style>

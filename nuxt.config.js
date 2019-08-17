@@ -31,6 +31,7 @@ export default {
   ],
   
   plugins: [
+    '~/plugins/global-components',
     '~/plugins/lazy-load-directive'
   ],
 
