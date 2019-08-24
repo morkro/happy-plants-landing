@@ -69,7 +69,7 @@
       </div>
     </page-section>
 
-    <page-section
+    <!-- <page-section
       class="section-what"
       aria-labelledby="what-heading"
       :wave-border="true"
@@ -236,7 +236,7 @@
           </v-typography>
         </li>
       </ul>
-    </page-section>
+    </page-section> -->
   </div>
 </template>
 
@@ -247,17 +247,17 @@
     SunIcon,
     MoonIcon
   } from 'vue-feather-icons'
-  import ModuleSunshine from '~/components/ModuleSunshine'
-  import ModuleSeasons from '~/components/ModuleSeasons'
-  import ModuleWatering from '~/components/ModuleWatering'
-  import ModuleNotes from '~/components/ModuleNotes'
+  // import ModuleSunshine from '~/components/ModuleSunshine'
+  // import ModuleSeasons from '~/components/ModuleSeasons'
+  // import ModuleWatering from '~/components/ModuleWatering'
+  // import ModuleNotes from '~/components/ModuleNotes'
   
   export default {
     components: {
-      'module-sunshine': ModuleSunshine,
-      'module-seasons': ModuleSeasons,
-      'module-watering': ModuleWatering,
-      'module-notes': ModuleNotes,
+      // 'module-sunshine': ModuleSunshine,
+      // 'module-seasons': ModuleSeasons,
+      // 'module-watering': ModuleWatering,
+      // 'module-notes': ModuleNotes,
       'feather-smartphone': SmartphoneIcon,
       'feather-droplet': DropletIcon,
       'feather-sun': SunIcon,

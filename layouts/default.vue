@@ -10,7 +10,7 @@
       <nuxt />
     </main>
 
-    <app-footer />
+    <!-- <app-footer /> -->
   </div>
 </template>
 
