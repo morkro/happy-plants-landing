@@ -1,53 +1,20 @@
 <template>
   <div>
-    <header id="app-header">
-      <div class="app-header-inner">
-        <h1 class="app-header-logo">
-          <a href="/">
-            <img
-              src="~/assets/happyplants-logo.svg"
-              alt="HappyPlants logo"
-              title="HappyPlants logo"
-            >
-          </a>
-        </h1>
+    <a id="skiptocontent" href="#app-content">
+      Skip to main content
+    </a>
 
-        <nav>
-          <ul>
-            <li><a href="/changelog">Changelog</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <app-header />
 
-    <main id="app-content">
+    <main id="app-content" role="main">
       <nuxt />
     </main>
 
-    <footer id="app-footer">
-      <div class="app-footer-inner">
-        <a href="mailto:happyplants@moritz.berlin">Contact</a>  
-        <a href="https://github.com/morkro/happy-plants" target="_blank">Roadmap</a>
-        <a href="https://github.com/morkro/happy-plants/issues/new" target="_blank">Bug reporting</a>
-        <a href="https://happyplants.app">© {{ currentYear }} HappyPlants</a>
-      </div>
-    </footer>
+    <!-- <app-footer /> -->
   </div>
 </template>
 
-<script>
-  export default {
-    data: () => ({
-      currentYear: new Date().getFullYear()
-    })
-  }
-</script>
-
 <style lang="postcss">
-  :root {
-    --max-page-width: 1024px;
-  }
-
   *,
   *::before,
   *::after {
@@ -57,50 +24,42 @@
   }
 
   html {
-    font-family:
-      'Source Sans Pro',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      'Helvetica Neue',
-      Arial,
-      sans-serif;
-    font-size: 16px;
+    font-family: "Asap", Open Sans, Helvetica, Arial, sans-serif;
+    font-size: var(--text-size-base);
+    font-weight: 500;
+    color: var(--text-color-base);
+    line-height: 150%;
+    text-rendering: geometricPrecision;
     word-spacing: 1px;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+    background: var(--background-primary);
   }
 
-  #app-header {
-    width: 100vw;
+  picture {
+    display: block;
+  }
 
-    & .app-header-inner {
-      width: 100%;
-      max-width: var(--max-page-width);
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-    }
+  img {
+    vertical-align: middle;
+  }
 
-    & .app-header-logo {
-      & img {
-        width: 250px;
-        height: auto;
-      }
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 
-  #app-footer {
-    width: 100vw;
-
-    & .app-footer-inner {
-      width: 100%;
-      max-width: var(--max-page-width);
-      margin: 0 auto;
-    }
+  #skiptocontent {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    overflow: hidden;
+    top: -10px;
   }
 </style>

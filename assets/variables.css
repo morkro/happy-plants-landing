@@ -1,8 +1,10 @@
 :root {
+  /* Colors */
   --brand-green: rgb(65, 181, 158);
   --brand-green-lighten: color-mod(rgb(65, 181, 158) tint(70%));
   --brand-green-medium: color-mod(rgb(65, 181, 158) a(70%));
   --brand-green-low: color-mod(rgb(65, 181, 158) a(30%));
+  --brand-green-dark: color-mod(rgb(65, 181, 158) shade(10%));
 
   --brand-yellow: rgb(248, 197, 89);
   --brand-yellow-medium: color-mod(rgb(248, 197, 89) a(50%));
@@ -21,4 +23,24 @@
 
   --custom-black: #202425;
   --custom-white: #dadada;
+
+  --background-primary: white;
+
+  /* Typography */
+  --text-color-base: var(--custom-black);
+  --text-color-secondary: rgba(0, 0, 0, 0.6);
+  --text-color-inverse: white;
+  --text-color-button: white;
+  --link-color: var(--text-color-base, black);
+
+  --transparency-white-light: rgba(255, 255, 255, 0.25);
+  --transparency-black-light: rgba(0, 0, 0, 0.12);
+  --transparency-black-medium: rgba(0, 0, 0, 0.66);
+
+  /* Layout */
+  --max-page-width: 960px;
+  --base-gap: 20px;
+  --border-radius: 6px;
+  --plain-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+  --icon-size-small: 16px;
 }

@@ -2,9 +2,7 @@ import StyleLintPlugin from 'stylelint-webpack-plugin'
 
 export default {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
+  
   head: {
     title: 'HappyPlants',
     meta: [
@@ -16,29 +14,43 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' }
+    ],
+    script: [
+      { src: '//cdn.headwayapp.co/widget.js', defer: true }
+    ]
   },
-  /*
-   ** Customize the progress-bar color
-   */
+  
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
+
   css: [
-    { src: '@/assets/colors.css', lang: 'postcss' }
+    { src: '@/assets/fonts.css', lang: 'postcss' },
+    { src: '@/assets/variables.css', lang: 'postcss' },
+    { src: '@/assets/pattern.css', lang: 'postcss' }
   ],
-  /*
-   ** Plugins to load before mounting the App
-   */
-  plugins: [],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/eslint-module'],
-  /*
-   ** Build configuration
-   */
+  
+  plugins: [
+    '~/plugins/global-components',
+    '~/plugins/lazy-load-directive'
+  ],
+
+  modules: [
+    '@nuxtjs/pwa',
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/google-analytics'
+  ],
+
+  env: {
+    HEADWAY_ACCOUNT: process.env.HEADWAY_ACCOUNT
+  },
+
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS,
+    dev: false
+  },
+
   build: {
     /*
      ** You can extend webpack config here
