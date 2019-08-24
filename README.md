@@ -1,4 +1,8 @@
-# Website for HappyPlants
+<h1 align="center">
+  <img src="docs/logo-readme.png" alt="HappyPlants 🌵🌱" />
+</h1>
+
+## Website for HappyPlants
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f0cbf8d7-d4a7-4b17-87d7-31960bd2d2f8/deploy-status)](https://app.netlify.com/sites/happy-plants-website/deploys)
 
