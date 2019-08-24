@@ -205,10 +205,6 @@
     min-height: 65px;
     z-index: 1;
 
-    @nest html[data-theme="dark"] & {
-      --droplet-color: var(--dark-grey);
-    }
-
     & .droplet-background {
       position: absolute;
       z-index: 0;

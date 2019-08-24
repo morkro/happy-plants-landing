@@ -15,6 +15,7 @@ function createObserver ($el) {
 }
 
 function handleObserver (entries, observer) {
+  // eslint-disable-next-line no-unused-vars
   for (const entry of entries) {
     if (entry.isIntersecting) {
       loadImage(entry.target)

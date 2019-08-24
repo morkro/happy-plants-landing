@@ -121,10 +121,7 @@
                 @update-plant="updateWateringModule"
               />
               
-              <v-box>
-                Notes
-                <br>
-              </v-box>
+              <module-notes />
             </div>
           </div>
 
@@ -139,16 +136,18 @@
               </v-typography>
             </div>
             <div class="features-list-preview">
-              <ul>
-                <li><v-box>image</v-box></li>
-                <li><v-box>image</v-box></li>
-                <li><v-box>image</v-box></li>
-                <li><v-box>image</v-box></li>
-                <li><v-box>image</v-box></li>
-                <li><v-box>image</v-box></li>
-                <li><v-box>image</v-box></li>
-                <li><v-box>image</v-box></li>
-              </ul>
+              <div class="gallery-wrapper">
+                <ul>
+                  <li><v-box>image</v-box></li>
+                  <li><v-box>image</v-box></li>
+                  <li><v-box>image</v-box></li>
+                  <li><v-box>image</v-box></li>
+                  <li><v-box>image</v-box></li>
+                  <li><v-box>image</v-box></li>
+                  <li><v-box>image</v-box></li>
+                  <li><v-box>image</v-box></li>
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -210,7 +209,10 @@
       </div>
     </page-section>
 
-    <page-section class="section-faq" aria-labelledby="faq-heading">
+    <page-section
+      class="section-faq"
+      aria-labelledby="faq-heading"
+    >
       <v-typography id="faq-heading" variant="headline">
         Frequently Asked Questions
       </v-typography>
@@ -235,76 +237,11 @@
         </li>
       </ul>
     </page-section>
-
-    <page-section
-      class="section-about"
-      aria-labelledby="about-heading"
-      :wave-border="true"
-    >
-      <v-typography id="about-heading" variant="headline">
-        Who's making HappyPlants?
-      </v-typography>
-
-      <div class="about-content">
-        <v-box class="about-content-photo">
-          <lazy-image
-            :source="require('~/assets/moritz.jpg')"
-            alt="Photo of Moritz Kröger"
-          />
-        </v-box>
-
-        <div class="about-content-info">
-          <v-typography>
-            My name is Moritz Kröger, I'm an open source engineer and plant enthusiast from Berlin.
-            <br>
-            I created HappyPlants because I wanted an easy and visual way of documenting my houseplants.
-            I started off with an Excel sheet but soon hit its limits, so I slowly created my own
-            web application.
-          </v-typography>
-
-          <ul class="about-content-socialmedia">
-            <li>
-              <a
-                href="https://www.instagram.com/morkro/"
-                target="_blank"
-                rel="noopener"
-                aria-label="Link to Instagram"
-              >
-                <feather-instagram />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.moritz.berlin"
-                target="_blank"
-                rel="noopener"
-                aria-label="Personal website"
-              >
-                <feather-home />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.github.com/morkro"
-                target="_blank"
-                rel="noopener"
-                aria-label="Link to GitHub"
-              >
-                <feather-github />
-              </a>
-            </li>
-          </ul>
-        </div>        
-      </div>
-    </page-section>
   </div>
 </template>
 
 <script>
   import {
-    HomeIcon,
-    InstagramIcon,
-    GithubIcon,
     DropletIcon,
     SmartphoneIcon,
     SunIcon,
@@ -313,16 +250,15 @@
   import ModuleSunshine from '~/components/ModuleSunshine'
   import ModuleSeasons from '~/components/ModuleSeasons'
   import ModuleWatering from '~/components/ModuleWatering'
+  import ModuleNotes from '~/components/ModuleNotes'
   
   export default {
     components: {
       'module-sunshine': ModuleSunshine,
       'module-seasons': ModuleSeasons,
       'module-watering': ModuleWatering,
+      'module-notes': ModuleNotes,
       'feather-smartphone': SmartphoneIcon,
-      'feather-instagram': InstagramIcon,
-      'feather-home': HomeIcon,
-      'feather-github': GithubIcon,
       'feather-droplet': DropletIcon,
       'feather-sun': SunIcon,
       'feather-moon': MoonIcon
@@ -499,25 +435,57 @@
       }
     }
 
-    & .feature-gallery .features-list-preview ul {
-      list-style: none;
+    & .feature-gallery .gallery-wrapper {
       display: flex;
       width: 50%;
+      height: 350px;
+      align-content: center;
       flex-wrap: wrap;
       margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: calc(2 * var(--base-gap));
+        background: linear-gradient(180deg, white, transparent);
+        left: 0;
+        right: 0;
+      }
+
+      &::before {
+        top: 0;
+        background: linear-gradient(180deg, white, transparent);
+      }
+
+      &::after {
+        bottom: 0;
+        background: linear-gradient(0deg, white, transparent);
+      }
+
+      & ul {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
 
       & li {
-        --preview-size: 80px;
+        --preview-size: 100px;
         width: var(--preview-size);
         height: var(--preview-size);
 
         &:not(:last-child):not(:nth-last-of-type(2)) {
-          margin-bottom: var(--base-gap);
+          margin-bottom: calc(var(--base-gap) / 2);
         }
 
-        &:not(:nth-child(4n)) {
-          margin-right: var(--base-gap);
-        }
+        /* &:not(:nth-child(4n)) {
+          margin-right: calc(var(--base-gap) / 2);
+        } */
       }
     }
 
@@ -547,52 +515,6 @@
 
       & li:not(:last-child) {
         margin-bottom: calc(2 * var(--base-gap));
-      }
-    }
-  }
-
-  .section-about {
-    & h1 {
-      margin-bottom: calc(4 * var(--base-gap));
-      color: var(--brand-green);
-      text-shadow: 0 3px 10px var(--brand-green-lighten);
-    }
-
-    & .about-content {
-      display: flex;
-      justify-content: center;
-    }
-
-    & .about-content-photo {
-      width: 250px;
-      height: 250px;
-      margin-right: calc(2 * var(--base-gap));
-      box-shadow: 0 2px 9px 2px var(--brand-blue-low);
-
-      & img {
-        width: 100%;
-      }
-    }
-
-    & .about-content-info {
-      width: 50%;
-    }
-
-    & .about-content-socialmedia {
-      list-style: none;
-      display: flex;
-      margin-top: var(--base-gap);
-
-      & li:not(:last-child) {
-        margin-right: var(--base-gap);
-      }
-
-      & svg {
-        color: var(--link-color);
-
-        &:hover {
-          color: var(--brand-green);
-        }
       }
     }
   }

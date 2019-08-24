@@ -1,7 +1,57 @@
 <template>
   <footer id="app-footer" role="contentinfo">
+    <wave-border color="black" />
+    
     <div class="app-footer-inner">
       <div class="app-footer-contact">
+        <v-box class="about-content-photo">
+          <lazy-image
+            :source="require('~/assets/moritz.jpg')"
+            alt="Photo of Moritz Kröger"
+          />
+        </v-box>
+
+        <v-typography>
+          My name is Moritz Kröger, I'm an open source engineer and plant enthusiast from Berlin.
+          <br>
+          I created HappyPlants because I wanted an easy and visual way of documenting my houseplants.
+          I started off with an Excel sheet but soon hit its limits, so I slowly created my own
+          web application.
+        </v-typography>
+
+        <ul class="about-content-socialmedia">
+          <li>
+            <a
+              href="https://www.instagram.com/morkro/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Link to Instagram"
+            >
+              <feather-instagram />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.moritz.berlin"
+              target="_blank"
+              rel="noopener"
+              aria-label="Personal website"
+            >
+              <feather-home />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.github.com/morkro"
+              target="_blank"
+              rel="noopener"
+              aria-label="Link to GitHub"
+            >
+              <feather-github />
+            </a>
+          </li>
+        </ul>
+
         <v-text variant="subline">
           Having a question or a problem?<br>Don't hesitate to reach out!
         </v-text>
@@ -77,7 +127,7 @@
           </li>
           <li>
             <a
-              href="https://github.com/morkro/happy-plants"
+              href="https://github.com/morkro/happy-plants-website"
               target="_blank"
               rel="noopener"
             >
@@ -104,7 +154,15 @@
 </template>
 
 <script>
-  import { TwitterIcon, MapIcon, AlertCircleIcon, GithubIcon, WatchIcon } from 'vue-feather-icons'
+  import {
+    TwitterIcon,
+    MapIcon,
+    AlertCircleIcon,
+    GithubIcon,
+    WatchIcon,
+    InstagramIcon,
+    HomeIcon
+  } from 'vue-feather-icons'
   import Button from '~/components/Button'
   import Typography from '~/components/Typography'
 
@@ -116,7 +174,9 @@
       'feather-map': MapIcon,
       'feather-alert': AlertCircleIcon,
       'feather-github': GithubIcon,
-      'feather-watch': WatchIcon
+      'feather-watch': WatchIcon,
+      'feather-instagram': InstagramIcon,
+      'feather-home': HomeIcon,
     },
 
     data: () => ({
@@ -155,6 +215,7 @@
     width: 100vw;
     background: var(--custom-black);
     color: var(--grey);
+    position: relative;
 
     & a svg {
       filter: none;
