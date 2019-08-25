@@ -184,7 +184,9 @@
 </script>
 
 
-<style lang="postcss">
+<style lang="postcss" scoped>
+  @custom-media --small-viewport (max-width: 775px);
+
   #app-footer {
     width: 100vw;
     background: var(--custom-black);
@@ -197,26 +199,42 @@
   }
 
   .app-footer-inner {
+    --padding-vertical: calc(var(--base-gap) * 6);
     width: 100%;
     max-width: var(--max-page-width);
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
     padding:
-      calc(var(--base-gap) * 6)
+      var(--padding-vertical)
       var(--base-gap);
 
     &:first-of-type {
       border-bottom: 2px solid var(--transparency-white-light);
     }
+
+    @media (--small-viewport) {
+      --padding-vertical: calc(var(--base-gap) * 4);
+      display: block;
+    }
   }
 
   .app-footer-left {
     width: 60%;
+
+    @media (--small-viewport) {
+      width: 100%;
+    }
   }
 
   .app-footer-author {
     display: flex;
+
+    @media (--small-viewport) {
+      flex-direction: column;
+      margin-bottom: calc(var(--base-gap) * 4);
+      text-align: center;
+    }
 
     & > div {
       margin-right: var(--base-gap);
@@ -226,6 +244,7 @@
       width: 150px;
       height: 150px;
       flex: 0 0 auto;
+      margin: 0 auto;
     }
 
     & .typography {
@@ -303,6 +322,11 @@
   .app-footer-right {
     text-align: right;
     width: 40%;
+
+    @media (--small-viewport) {
+      width: 100%;
+      text-align: center;
+    }
 
     &,
     & .typography {

@@ -66,7 +66,8 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      padding-top: var(--base-gap);
+      padding: var(--base-gap);
+      padding-bottom: 0;
     }
 
     & .app-header-logo {
