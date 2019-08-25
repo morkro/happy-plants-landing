@@ -12,6 +12,10 @@ Commands:
 - **`npm run generate`**: Generate static project
 - **`npm run build && npm run start`**: Build for production and launch server
 
+## 📑 Changelog  
+
+The changelog feature is provided by [Headway](https://headwayapp.co/). Environment variables are declared via Netlify.
+
 ## 📦 Deployment 
 
 Hosted on Netlify.
