@@ -155,7 +155,7 @@
           icon: 'alert'
         },
         {
-          link: 'https://github.com/morkro/happy-plants-website',
+          link: 'https://github.com/morkro/happy-plants-landing',
           label: 'View source',
           icon: 'github'
         }
