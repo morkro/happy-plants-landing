@@ -81,6 +81,7 @@
     justify-content: center;
     cursor: pointer;
     background: var(--button-background);
+    font-family: var(--font-family);
     font-size: var(--button-font-size);
     font-weight: 500;
     text-decoration: none;
@@ -123,6 +124,7 @@
 
     & span {
       color: var(--text-color);
+      font-family: inherit;
     }
 
     & .button-icon {

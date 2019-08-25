@@ -10,7 +10,7 @@
       <nuxt />
     </main>
 
-    <!-- <app-footer /> -->
+    <app-footer />
   </div>
 </template>
 
@@ -24,7 +24,7 @@
   }
 
   html {
-    font-family: "Asap", Open Sans, Helvetica, Arial, sans-serif;
+    font-family: var(--font-family);
     font-size: var(--text-size-base);
     font-weight: 500;
     color: var(--text-color-base);

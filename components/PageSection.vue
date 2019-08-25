@@ -34,6 +34,7 @@
       width: 100%;
       max-width: var(--max-page-width);
       margin: 0 auto;
+      padding: 0 var(--base-gap);
       position: relative;
       z-index: 1;
 
