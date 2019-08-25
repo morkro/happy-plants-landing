@@ -1,70 +1,14 @@
 <template>
   <footer id="app-footer" role="contentinfo">
     <wave-border color="black" />
-    
+
     <div class="app-footer-inner">
       <div class="app-footer-contact">
-        <v-box class="about-content-photo">
-          <lazy-image
-            :source="require('~/assets/moritz.jpg')"
-            alt="Photo of Moritz Kröger"
-          />
-        </v-box>
-
-        <v-typography>
-          My name is Moritz Kröger, I'm an open source engineer and plant enthusiast from Berlin.
-          <br>
-          I created HappyPlants because I wanted an easy and visual way of documenting my houseplants.
-          I started off with an Excel sheet but soon hit its limits, so I slowly created my own
-          web application.
-        </v-typography>
-
-        <ul class="about-content-socialmedia">
-          <li>
-            <a
-              href="https://www.instagram.com/morkro/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Link to Instagram"
-            >
-              <feather-instagram />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.moritz.berlin"
-              target="_blank"
-              rel="noopener"
-              aria-label="Personal website"
-            >
-              <feather-home />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.github.com/morkro"
-              target="_blank"
-              rel="noopener"
-              aria-label="Link to GitHub"
-            >
-              <feather-github />
-            </a>
-          </li>
-        </ul>
-
         <v-text variant="subline">
           Having a question or a problem?<br>Don't hesitate to reach out!
         </v-text>
 
         <div class="app-footer-contact-btn">
-          <v-button 
-            v-if="hideContactDetails"
-            color="grey"
-            @click.native="onShowContactDetails"
-          >
-            Contact
-          </v-button>
-
           <div>
             <v-text>{{ email }}</v-text>
 
@@ -72,7 +16,6 @@
               <li>
                 <v-button
                   color="transparent"
-                  type="small"
                   @click.native="onCopyEmail"
                 >
                   Copy
@@ -82,7 +25,6 @@
                 <v-button
                   tag="a"
                   color="transparent"
-                  type="small"
                   :href="`mailto:${email}`"
                 >
                   Open
@@ -92,56 +34,55 @@
           </div>
         </div>
       </div>
+    </div>
+    
+    <div class="app-footer-inner">
+      <div class="app-footer-left">     
+        <div class="app-footer-author">
+          <div>
+            <v-box class="app-footer-author-photo">
+              <lazy-image
+                :source="require('~/assets/moritz.jpg')"
+                alt="Photo of Moritz Kröger"
+              />
+            </v-box>
 
-      <div class="app-footer-navigation">
+            <ul class="app-footer-author-social">
+              <li v-for="profile in socialMedia" :key="profile.icon">
+                <a
+                  :href="profile.link"
+                  target="_blank"
+                  rel="noopener"
+                  :aria-label="profile.label"
+                >
+                  <component :is="`feather-${profile.icon}`" />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <v-typography>
+            My name is Moritz Kröger, I'm an open source engineer and plant enthusiast from 
+            <a
+              href="https://goo.gl/maps/cateuodz7YfQAGVYA"
+              rel="noopener"
+              target="_blank"
+            >Berlin</a>.
+            I created HappyPlants as an easy and visual way of documenting my houseplants.
+          </v-typography>
+        </div>
+      </div>
+
+      <div class="app-footer-right">
         <ul>
-          <li>
+          <li v-for="link in links" :key="link.label">
             <a
-              href="https://twitter.com/morkro"
+              :href="link.link"
               target="_blank"
               rel="noopener"
             >
-              <feather-twitter />
-              Follow for updates
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/morkro/happy-plants/projects/5"
-              target="_blank"
-              rel="noopener"
-            >
-              <feather-map />
-              Roadmap
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/morkro/happy-plants/issues"
-              target="_blank"
-              rel="noopener"
-            >
-              <feather-alert />
-              Bug reporting
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/morkro/happy-plants-website"
-              target="_blank"
-              rel="noopener"
-            >
-              <feather-github />
-              View Source
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              rel="noopener"
-            >
-              <feather-watch />
-              Privacy Policy
+              <component :is="`feather-${link.icon}`" />
+              {{link.label}}
             </a>
           </li>
         </ul>
@@ -159,7 +100,6 @@
     MapIcon,
     AlertCircleIcon,
     GithubIcon,
-    WatchIcon,
     InstagramIcon,
     HomeIcon
   } from 'vue-feather-icons'
@@ -174,7 +114,6 @@
       'feather-map': MapIcon,
       'feather-alert': AlertCircleIcon,
       'feather-github': GithubIcon,
-      'feather-watch': WatchIcon,
       'feather-instagram': InstagramIcon,
       'feather-home': HomeIcon,
     },
@@ -182,13 +121,48 @@
     data: () => ({
       email: 'happyplants@moritz.berlin',
       currentYear: new Date().getFullYear(),
-      hideContactDetails: true
+      socialMedia: [
+        {
+          link: 'https://www.instagram.com/morkro',
+          label: 'Link to Instagram',
+          icon: 'instagram'
+        },
+        {
+          link: 'https://www.moritz.berlin',
+          label: 'Personal website',
+          icon: 'home'
+        },
+        {
+          link: 'https://www.github.com/morkro',
+          label: 'Link to GitHub',
+          icon: 'github'
+        }
+      ],
+      links: [
+        {
+          link: 'https://twitter.com/morkro',
+          label: 'Follow for updates',
+          icon: 'twitter'
+        },
+        {
+          link: 'https://github.com/morkro/happy-plants/projects/5',
+          label: 'Roadmap',
+          icon: 'map'
+        },
+        {
+          link: 'https://github.com/morkro/happy-plants/issues',
+          label: 'Bug reporting',
+          icon: 'alert'
+        },
+        {
+          link: 'https://github.com/morkro/happy-plants-website',
+          label: 'View source',
+          icon: 'github'
+        }
+      ]
     }),
 
     methods: {
-      onShowContactDetails () {
-        this.hideContactDetails = false
-      },
       onCopyEmail () {
         /* Workaround for Safari */
         const range = document.createRange()
@@ -210,7 +184,7 @@
 </script>
 
 
-<style lang="postcss" scoped>
+<style lang="postcss">
   #app-footer {
     width: 100vw;
     background: var(--custom-black);
@@ -231,64 +205,107 @@
     padding:
       calc(var(--base-gap) * 6)
       var(--base-gap);
+
+    &:first-of-type {
+      border-bottom: 2px solid var(--transparency-white-light);
+    }
   }
 
-  .app-footer-contact-btn {
-    display: inline-block;
-    background: black;
-    border-radius: var(--border-radius);
-    position: relative;
-    margin: calc(2 * var(--base-gap)) 0 0;
+  .app-footer-left {
+    width: 60%;
+  }
 
-    & > button {
-      --button-shadow: black;
-      --button-background: black;
-      --button-padding: calc(var(--base-gap) / 1.5);
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1;
+  .app-footer-author {
+    display: flex;
 
-      &::after {
-        transform: none;
+    & > div {
+      margin-right: var(--base-gap);
+    }
+
+    & .app-footer-author-photo {
+      width: 150px;
+      height: 150px;
+      flex: 0 0 auto;
+    }
+
+    & .typography {
+      --size: var(--text-size-small);
+    }
+  }
+
+  .app-footer-author-social {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: var(--base-gap);
+
+    & li {
+      margin: 0 calc(var(--base-gap) / 2);
+    }
+
+    & a:hover svg {
+      stroke: var(--brand-green);
+    }
+
+    & svg {
+      stroke: var(--custom-white);
+    }
+  }
+
+  .app-footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+
+    & .app-footer-contact-btn {
+      display: inline-block;
+      background: black;
+      border-radius: var(--border-radius);
+      position: relative;
+      margin-top: var(--base-gap);
+
+      & > div {
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 0;
+      }
+
+      & p {
+        margin: 0 calc(2 * var(--base-gap));
       }
     }
 
-    & > div {
-      display: flex;
-      align-items: center;
-      position: relative;
-      z-index: 0;
-    }
+    & .app-footer-contact-actions {
+      --border: 2px solid var(--custom-black);
+      border-left: var(--border);
+      list-style: none;
 
-    & p {
-      margin: 0 calc(2 * var(--base-gap));
-    }
-  }
+      & li:first-child {
+        border-bottom: var(--border);
+      }
 
-  .app-footer-contact-actions {
-    --border: 2px solid var(--custom-black);
-    border-left: var(--border);
-    list-style: none;
+      & a,
+      & button {
+        --button-font-size: var(--text-size-xsmall);
+      }
 
-    & li:first-child {
-      border-bottom: var(--border);
-    }
-
-    & a,
-    & button {
-      --button-font-size: var(--text-size-xsmall);
+      & button span,
+      & a span {
+        line-height: 100%;
+      }
     }
   }
 
-  .app-footer-navigation {
+  .app-footer-right {
     text-align: right;
+    width: 40%;
 
     &,
-    & p {
+    & .typography {
       font-size: var(--text-size-small);
     }
 

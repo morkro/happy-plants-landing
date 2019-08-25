@@ -69,6 +69,8 @@
       </div>
     </page-section>
 
+    <page-section :wave-border="true" />
+
     <!-- <page-section
       class="section-what"
       aria-labelledby="what-heading"
@@ -347,7 +349,7 @@
     }
 
     & .introduction-content {
-      padding-left: calc(var(--base-gap) * 4);
+      padding-left: calc(var(--base-gap) * 2);
       font-weight: 500;
 
       & h1 {

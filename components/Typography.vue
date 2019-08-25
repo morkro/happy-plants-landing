@@ -46,6 +46,10 @@
     --size: var(--text-size-base);
     font-weight: var(--weight);
     font-size: var(--size);
+
+    & a {
+      color: inherit;
+    }
   }
 
   h1.typography {
