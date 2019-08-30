@@ -48,6 +48,8 @@
 
 
 <style lang="postcss" scoped>
+  @custom-media --small-viewport (max-width: 600px);
+
   #app-header {
     width: 100vw;
     position: absolute;
@@ -68,6 +70,11 @@
       justify-content: space-between;
       padding: var(--base-gap);
       padding-bottom: 0;
+
+      @media (--small-viewport) {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     & .app-header-logo {
@@ -91,6 +98,10 @@
     & nav {
       padding-top: calc(var(--base-gap) / 2);
       padding-right: calc(var(--base-gap) / 2);
+
+      @media (--small-viewport) {
+        display: none;
+      }
     }
 
     & ul {

@@ -55,7 +55,7 @@
   h1.typography {
     --size: 220%;
     --weight: 600;
-    line-height: var(--size);
+    line-height: calc(var(--size) / 2);
   }
 
   h2.typography {

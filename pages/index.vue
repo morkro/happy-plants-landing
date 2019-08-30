@@ -42,7 +42,9 @@
           </li>
           <li>
             <feather-moon />
-            <v-typography>During which seasons does it grow? When is it dormant?</v-typography>
+            <v-typography>
+              During which seasons does it grow? <span class="desktop-only">When is it dormant?</span>
+            </v-typography>
           </li>
           <li>
             <feather-sun />
@@ -298,11 +300,19 @@
 </script>
 
 <style lang="postcss">
+  @custom-media --medium-viewport (max-width: 815px);
+
   .page-section.section-introduction {
     background: var(--brand-green);
     background-image: var(--topography-pattern);
     color: var(--text-color-inverse);
     padding-top: calc(var(--base-gap) * 8);
+
+    @media (--medium-viewport) {
+      & .desktop-only {
+        display: none;
+      }
+    }
 
     &::after {
       content: "";
@@ -318,6 +328,11 @@
       display: flex;
       position: relative;
       z-index: 1;
+
+      @media (--medium-viewport) {
+        text-align: center;
+        flex-direction: column;
+      }
     }
 
     & img {
@@ -330,11 +345,25 @@
       width: calc(var(--screen-width) + var(--base-gap) / 3 * 2);
       flex: 0 0 auto;
       position: relative;
+      text-align: center;
+
+      @media (--medium-viewport) {
+        order: 2;
+        margin:
+          0
+          auto
+          calc(-8 * var(--base-gap))
+          auto;
+      }
 
       & .device {
         box-shadow: 0 5px 11px rgba(0, 0, 0, 0.6);
         position: absolute;
         width: 100%;
+
+        @media (--medium-viewport) {
+          position: relative;
+        }
       }
 
       & .device-screen {
@@ -352,9 +381,20 @@
       padding-left: calc(var(--base-gap) * 2);
       font-weight: 500;
 
+      @media (--medium-viewport) {
+        order: 1;
+        padding-left: 0;
+        margin-bottom: calc(var(--base-gap) * 2);
+        text-align: center;
+      }
+
       & h1 {
         margin: 0 0 var(--base-gap);
         text-align: left;
+
+        @media (--medium-viewport) {
+          text-align: center;
+        }
       }
 
       & a {
@@ -374,6 +414,10 @@
         display: flex;
         align-items: center;
         line-height: 200%;
+
+        @media (--medium-viewport) {
+          justify-content: center;
+        }
       }
 
       & ul li svg {

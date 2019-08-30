@@ -238,6 +238,10 @@
 
     & > div {
       margin-right: var(--base-gap);
+
+      @media (--small-viewport) {
+        margin-right: 0;
+      }
     }
 
     & .app-footer-author-photo {
@@ -257,6 +261,10 @@
     justify-content: center;
     list-style: none;
     margin-top: var(--base-gap);
+
+    @media (--small-viewport) {
+      margin-bottom: var(--base-gap);
+    }
 
     & li {
       margin: 0 calc(var(--base-gap) / 2);
