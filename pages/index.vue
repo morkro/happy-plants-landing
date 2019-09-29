@@ -282,6 +282,13 @@
   import ModuleWatering from '~/components/ModuleWatering'
   import ModuleNotes from '~/components/ModuleNotes'
   
+  const seasons = [
+    'January', 'February', 'March',
+    'April', 'Mai', 'June',
+    'July', 'August', 'September',
+    'October', 'November', 'December'
+  ]
+
   export default {
     components: {
       'module-sunshine': ModuleSunshine,
@@ -302,16 +309,21 @@
       featuredModules: [
         { name: 'sunshine', icon: 'sun', color: 'yellow' },
         { name: 'watering', icon: 'droplet', color: 'blue' },
-        { name: 'seasons', icon: 'moon', color: 'green' },
+        { name: 'seasons', icon: 'moon', color: 'default' },
         { name: 'notes', icon: 'book', color: 'grey' },
       ],
       sunshine: 2,
-      seasons: [
-        'January', 'February', 'March',
-        'April', 'Mai', 'June',
-        'July', 'August', 'September',
-        'October', 'November', 'December'
-      ].map(month => ({ month, growth: false })),
+      seasons: seasons
+        .map(month => ({ month, growth: false }))
+        .map((month, index) => {
+          const currentMonth = (new Date().getMonth() + 1)
+          month.growth = (
+            currentMonth === index ||
+            currentMonth === index - 1 ||
+            currentMonth === index + 1
+          )
+          return month
+        }),
       waterAmount: 2,
       waterFrequency: 'weekly'
     }),
@@ -328,7 +340,7 @@
         
         if (this.isSelectModule(moduleName)) {
           const module = this.featuredModules.find(m => m.name === moduleName)
-          color = module ? module.color : 'green'
+          color = module ? module.color : 'default'
         }
         
         return color
@@ -561,6 +573,12 @@
         order: 2;
         width: 100%;
         height: 20vh;
+        text-align: left;
+
+        & .plant-component .component-content {
+          font-size: 80%;
+          line-height: 1.5;
+        }
       }
 
       &::after,
@@ -644,6 +662,10 @@
 
       &::after {
         display: none;
+      }
+
+      & svg {
+        opacity: 0.2;
       }
     }
 

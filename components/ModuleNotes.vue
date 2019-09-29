@@ -9,25 +9,6 @@
     </template>
 
     <template v-slot:content>
-      <!-- <better-dialog
-        id="plant-notes-dialog"
-        :show="showNotes"
-        @close-dialog="closeNotes">
-        <template v-slot:headline>
-          <span>Notebook</span>
-        </template>
-
-        <div>
-          <textarea
-            @change="updateContent"
-            :value="content" />
-
-          <v-button @click.native="closeAndSaveNotes">
-            Save
-          </v-button>
-        </div>
-      </better-dialog> -->
-
       <div v-if="!content"
            key="notes-empty"
            class="notes-empty"
@@ -46,11 +27,11 @@
           <p>{{ content }}</p>
         </div>
         <div class="notes-actions">
-          <v-button @click.native="togglePreview">
+          <v-button>
             <span v-if="!showAllNotes">Show all</span>
             <span v-else>Hide all</span>
           </v-button>
-          <v-button v-if="!showAllNotes" @click.native="toggleNotes">
+          <v-button v-if="!showAllNotes">
             Edit notes
           </v-button>
         </div>
@@ -86,12 +67,6 @@
     },
 
     methods: {
-      togglePreview () {
-        this.showAllNotes = !this.showAllNotes
-      },
-      toggleNotes () {
-        this.showNotes = !this.showNotes
-      },
       closeNotes () {
         this.showNotes = false
       },
@@ -119,7 +94,7 @@
   }
 
   textarea {
-    --form-color: var(--background-secondary);
+    --form-color: var(--light-grey);
     border: none;
     width: 100%;
     height: 45vh;
@@ -134,6 +109,7 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    width: 100%;
 
     &.show-all {
       display: block;
@@ -153,7 +129,7 @@
   }
 
   .notes-preview {
-    background: var(--background-secondary);
+    background: var(--light-grey);
     border-radius: var(--border-radius);
     padding: var(--base-gap);
     font-style: italic;

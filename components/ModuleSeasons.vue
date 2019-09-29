@@ -22,7 +22,7 @@
             :key="index"
             :class="getSeasonListClass(season, index)"
           >
-            <button type="button" @click.self="emitSeasonToggle(season)">
+            <button @click.self="emitSeasonToggle(season)">
               {{ season.month[0] }}
             </button>
           </li>
