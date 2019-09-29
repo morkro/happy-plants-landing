@@ -113,6 +113,8 @@
 <style lang="postcss" scoped>
   .seasons-content {
     width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   p {
@@ -124,9 +126,10 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
+    height: 100%;
 
     & li {
-      height: calc(100vw / 12 + 6px);
+      height: 100%;
       width: 100%;
       position: relative;
 
@@ -178,7 +181,7 @@
       }
 
       &.current button {
-        font-weight: 500;
+        font-weight: 700;
         box-shadow: var(--dark-shadow);
         transform: scale(1.15);
       }
@@ -186,6 +189,7 @@
   }
 
   .season-list button {
+    border: none;
     color: var(--button-color);
     background: var(--button-background);
     border-radius: var(--border-radius);

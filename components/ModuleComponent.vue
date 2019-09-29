@@ -47,6 +47,8 @@
     overflow: hidden;
     z-index: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   .plant-component .component-header {
@@ -73,5 +75,6 @@
   .plant-component .component-content {
     display: flex;
     width: 100%;
+    height: 100%;
   }
 </style>

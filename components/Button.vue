@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  const colors = ['plain', 'grey', 'default', 'yellow', 'red', 'transparent']
+  const colors = ['plain', 'grey', 'default', 'yellow', 'red', 'blue', 'transparent']
   const types = ['normal', 'circle', 'small']
   const tags = ['button', 'a']
 
@@ -215,6 +215,13 @@
     --button-background: var(--brand-red);
     --button-focus: var(--brand-red-low);
     --button-shadow: var(--brand-red-medium);
+  }
+
+  button.blue,
+  a.blue {
+    --button-background: var(--brand-blue);
+    --button-focus: var(--brand-blue-low);
+    --button-shadow: var(--brand-blue-medium);
   }
 
   button.grey,

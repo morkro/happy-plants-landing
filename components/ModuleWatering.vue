@@ -9,41 +9,15 @@
     </template>
 
     <template v-slot:content>
-      <!-- <better-dialog
-        id="plant-watering-dialog"
-        :show="showRoutineSelection"
-        @close-dialog="closeRoutineDialog"
-      >
-        <template v-slot:headline>
-          <span>Choose frequency</span>
-        </template>
-        <ul>
-          <li v-for="type in messages.frequency" :key="type">
-            <label :for="type">
-              <v-input
-                :id="type"
-                type="radio"
-                name="watering-frequency"
-                :value="type"
-                :checked="type === frequency"
-                @change="onEmitFrequencyChange(type)"
-              />
-              <span>{{ type }}</span>
-            </label>
-          </li>
-        </ul>
-      </better-dialog> -->
-
       <div class="watering-description">
         <p>
           This plant has to be watered
-          <button
-            type="button"
+          <v-button
             class="watering-routine"
             @click="selectRoutine"
           >
             {{ frequency }}
-          </button>
+          </v-button>
           and
           <strong class="watering-amount">
             {{ selectedAmount }}
@@ -173,37 +147,14 @@
     font-weight: 500;
   }
 
-  #plant-watering-dialog .happy-dialog-content {
-    & ul {
-      list-style: none;
-    }
-
-    & li:not(:last-child) {
-      margin-bottom: var(--base-gap);
-    }
-
-    & label {
-      display: flex;
-      align-items: center;
-    }
-
-    & input {
-      margin-right: var(--base-gap);
-    }
-
-    & span {
-      font-weight: 500;
-      font-size: var(--text-size-medium);
-    }
-  }
-
   .droplet-canvas {
     --droplet-color: var(--grey);
 
     position: relative;
-    width: 30vw;
+    width: 30%;
     min-height: 65px;
     z-index: 1;
+    align-self: center;
 
     & .droplet-background {
       position: absolute;
