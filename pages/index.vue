@@ -36,17 +36,17 @@
         </v-typography>
 
         <ul>
-          <li>
+          <li @click="scrollToModule('watering')">
             <feather-droplet />
             <v-typography>How much water does it need?</v-typography>
           </li>
-          <li>
+          <li @click="scrollToModule('seasons')">
             <feather-moon />
             <v-typography>
               During which seasons does it grow? <span class="desktop-only">When is it dormant?</span>
             </v-typography>
           </li>
-          <li>
+          <li @click="scrollToModule('sunshine')">
             <feather-sun />
             <v-typography>Does it require lots of sun?</v-typography>
           </li>
@@ -71,8 +71,6 @@
       </div>
     </page-section>
 
-    <page-section :wave-border="true" />
-
     <!-- <page-section
       class="section-what"
       aria-labelledby="what-heading"
@@ -87,14 +85,19 @@
           HappyPlants is ...
         </v-typography>
       </div>
-    </page-section>
+    </page-section>-->
 
     <page-section
       class="section-features"
       aria-labelledby="features-heading"
+      :wave-border="true"
     >
       <div class="features-inner">
-        <v-typography id="features-heading" variant="headline">
+        <v-typography
+          id="features-heading"
+          ref="featuresHeading"
+          variant="headline"
+        >
           Features
         </v-typography>
 
@@ -107,25 +110,45 @@
               <v-typography>
                 Use modules to visualise your plants individual requirements.
               </v-typography>
+              <ul class="features-modules-selection">
+                <li v-for="feature in featuredModules" :key="feature.name">
+                  <v-button
+                    type="circle"
+                    :color="getModuleColor(feature.name)"
+                    @click.native="selectModule(feature.name)"
+                  >
+                    <component :is="`feather-${feature.icon}`" />
+                  </v-button>
+                </li>
+              </ul>
             </div>
+
             <div class="features-list-preview">
-              <module-sunshine
-                :intensity="sunshine"
-                @update-plant="updateSunshineModule"
-              />
+              <div :class="{ selected: isSelectModule('sunshine') }">
+                <module-sunshine
+                  :intensity="sunshine"
+                  @update-plant="updateSunshineModule"
+                />
+              </div>
 
-              <module-seasons
-                :seasons="seasons"
-                @update-plant="updateSeasonsModule"
-              />
+              <div :class="{ selected: isSelectModule('seasons') }">
+                <module-seasons
+                  :seasons="seasons"
+                  @update-plant="updateSeasonsModule"
+                />
+              </div>
 
-              <module-watering
-                :amount="waterAmount"
-                :frequency="waterFrequency"
-                @update-plant="updateWateringModule"
-              />
+              <div :class="{ selected: isSelectModule('watering') }">
+                <module-watering
+                  :amount="waterAmount"
+                  :frequency="waterFrequency"
+                  @update-plant="updateWateringModule"
+                />
+              </div>
               
-              <module-notes />
+              <div :class="{ selected: isSelectModule('notes') }">
+                <module-notes />
+              </div>
             </div>
           </div>
 
@@ -142,20 +165,15 @@
             <div class="features-list-preview">
               <div class="gallery-wrapper">
                 <ul>
-                  <li><v-box>image</v-box></li>
-                  <li><v-box>image</v-box></li>
-                  <li><v-box>image</v-box></li>
-                  <li><v-box>image</v-box></li>
-                  <li><v-box>image</v-box></li>
-                  <li><v-box>image</v-box></li>
-                  <li><v-box>image</v-box></li>
-                  <li><v-box>image</v-box></li>
+                  <li v-for="(_, index) in new Array(9)" :key="`gallery-item-${index}`">
+                    <v-box><feather-image /></v-box>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div class="features-list-item feature-tags">
+          <!-- <div class="features-list-item feature-tags">
             <div class="features-list-description">
               <v-typography variant="subline">
                 Use tags to group your houseplants
@@ -195,25 +213,30 @@
                 />
               </v-device>
             </div>
-          </div> 
+          </div>  -->
         </div>
 
         <div class="features-roadmap">
           <v-typography variant="subline">
             Interested to know what features are coming?
           </v-typography>
-          <a
+          <v-button
+            color="yellow"
+            tag="a"
             href="https://github.com/morkro/happy-plants/projects/5"
             target="_blank"
             rel="noopener"
           >
+            <template v-slot:icon>
+              <feather-map />
+            </template>
             Check out the roadmap!
-          </a>
+          </v-button>
         </div>
       </div>
     </page-section>
 
-    <page-section
+    <!--<page-section
       class="section-faq"
       aria-labelledby="faq-heading"
     >
@@ -249,38 +272,79 @@
     DropletIcon,
     SmartphoneIcon,
     SunIcon,
-    MoonIcon
+    MoonIcon,
+    MapIcon,
+    BookIcon,
+    ImageIcon
   } from 'vue-feather-icons'
-  // import ModuleSunshine from '~/components/ModuleSunshine'
-  // import ModuleSeasons from '~/components/ModuleSeasons'
-  // import ModuleWatering from '~/components/ModuleWatering'
-  // import ModuleNotes from '~/components/ModuleNotes'
+  import ModuleSunshine from '~/components/ModuleSunshine'
+  import ModuleSeasons from '~/components/ModuleSeasons'
+  import ModuleWatering from '~/components/ModuleWatering'
+  import ModuleNotes from '~/components/ModuleNotes'
   
+  const seasons = [
+    'January', 'February', 'March',
+    'April', 'Mai', 'June',
+    'July', 'August', 'September',
+    'October', 'November', 'December'
+  ]
+
   export default {
     components: {
-      // 'module-sunshine': ModuleSunshine,
-      // 'module-seasons': ModuleSeasons,
-      // 'module-watering': ModuleWatering,
-      // 'module-notes': ModuleNotes,
+      'module-sunshine': ModuleSunshine,
+      'module-seasons': ModuleSeasons,
+      'module-watering': ModuleWatering,
+      'module-notes': ModuleNotes,
       'feather-smartphone': SmartphoneIcon,
       'feather-droplet': DropletIcon,
       'feather-sun': SunIcon,
-      'feather-moon': MoonIcon
+      'feather-moon': MoonIcon,
+      'feather-map': MapIcon,
+      'feather-book': BookIcon,
+      'feather-image': ImageIcon
     },
 
     data: () => ({
+      highlightedModule: 'sunshine',
+      featuredModules: [
+        { name: 'sunshine', icon: 'sun', color: 'yellow' },
+        { name: 'watering', icon: 'droplet', color: 'blue' },
+        { name: 'seasons', icon: 'moon', color: 'default' },
+        { name: 'notes', icon: 'book', color: 'grey' },
+      ],
       sunshine: 2,
-      seasons: [
-        'January', 'February', 'March',
-        'April', 'Mai', 'June',
-        'July', 'August', 'September',
-        'October', 'November', 'December'
-      ].map(month => ({ month, growth: false })),
+      seasons: seasons
+        .map(month => ({ month, growth: false }))
+        .map((month, index) => {
+          const currentMonth = (new Date().getMonth() + 1)
+          month.growth = (
+            currentMonth === index ||
+            currentMonth === index - 1 ||
+            currentMonth === index + 1
+          )
+          return month
+        }),
       waterAmount: 2,
       waterFrequency: 'weekly'
     }),
 
     methods: {
+      selectModule (moduleName) {
+        this.highlightedModule = moduleName
+      },
+      isSelectModule (moduleName) {
+        return this.highlightedModule === moduleName
+      },
+      getModuleColor (moduleName) {
+        let color = 'plain'
+        
+        if (this.isSelectModule(moduleName)) {
+          const module = this.featuredModules.find(m => m.name === moduleName)
+          color = module ? module.color : 'default'
+        }
+        
+        return color
+      },
       updateSunshineModule (event) {
         this.sunshine = event.level
       },
@@ -294,6 +358,12 @@
       },
       updateWateringModule (event) {
         console.log(event)
+      },
+      scrollToModule (moduleName) {
+        if (!this.$refs.featuresHeading) return
+
+        this.$refs.featuresHeading.$el.scrollIntoView()
+        this.selectModule(moduleName)
       }
     }
   }
@@ -423,6 +493,11 @@
       & ul li svg {
         margin-right: calc(var(--base-gap) / 2);
       }
+
+      & ul li p,
+      & ul li svg {
+        cursor: help;
+      }
     }
 
     & .introduction-disclaimer {
@@ -445,23 +520,34 @@
 
   .page-section.section-features {
     & h1 {
-      margin-bottom: calc(4 * var(--base-gap));
+      margin: calc(6 * var(--base-gap)) 0;
     }
 
     & .features-list-item {
-      margin-bottom: calc(4 * var(--base-gap));
+      margin-bottom: calc(8 * var(--base-gap));
       display: flex;
       justify-content: space-evenly;
 
       &:nth-of-type(even) {
         flex-direction: row-reverse;
       }
+
+      @media (--medium-viewport) {
+        flex-direction: column;
+        text-align: center;
+
+        &:nth-of-type(even) {
+          flex-direction: column;
+        }
+      }
     }
 
     & .features-list-preview {
       position: relative;
+      width: 60%;
 
-      &::after {
+      &::after,
+      &::before {
         content: "";
         position: absolute;
         z-index: -1;
@@ -474,16 +560,118 @@
             calc(-1 * var(--base-gap) / 2)
           );
         border-radius: 50%;
-        background: var(--transparency-black-light);
-        box-shadow:
-          0 0 10px white,
-          0 0 30px var(--transparency-black-light);
+        background: var(--grey);
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+
+    & .feature-modules .features-list-preview {
+      @media (--medium-viewport) {
+        order: 2;
+        width: 100%;
+        height: 20vh;
+        text-align: left;
+
+        & .plant-component .component-content {
+          font-size: 80%;
+          line-height: 1.5;
+        }
+      }
+
+      &::after,
+      &::before {
+        width: calc(100% - 2 * var(--base-gap));
+        height: calc(100% - var(--base-gap));
+        border-radius: var(--border-radius);
+        bottom: 0;
+        left: 0;
+        transform:
+          translateY(20%)
+          translateX(var(--base-gap));
+      }
+
+      &::before {
+        opacity: 0.5;
+        display: block;
+        width: calc(100% - 4 * var(--base-gap));
+        transform:
+          translateY(30%)
+          translateX(calc(2 * var(--base-gap)));
+      }
+
+      & > div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+
+        &.selected {
+          opacity: 1;
+          z-index: 2;
+        }
+      }
+    }
+
+    & .feature-modules .features-list-description {
+      @media (--medium-viewport) {
+        order: 1;
+      }
+
+      & p {
+        margin: var(--base-gap) 0;
+      }
+    }
+
+    & .features-modules-selection {
+      display: flex;
+      list-style: none;
+      margin-top: calc(var(--base-gap) * 1.5);
+
+      @media (--medium-viewport) {
+        justify-content: center;
+        margin-bottom: calc(var(--base-gap) * 1.5);
+      }
+
+      & li:not(:last-child) {
+        margin-right: calc(var(--base-gap) / 2);
+      }
+    }
+
+    & .feature-gallery .features-list-description {
+      flex: 0 1 60%;
+      margin-left: var(--base-gap);
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+
+      & h2 {
+        margin-bottom: var(--base-gap);
+      }
+    }
+
+    & .feature-gallery .features-list-preview {
+      width: 40%;
+
+      @media (--medium-viewport) {
+        margin-top: calc(2 * var(--base-gap));
+        width: 100%;
+      }
+
+      &::after {
+        display: none;
+      }
+
+      & svg {
+        opacity: 0.2;
       }
     }
 
     & .feature-gallery .gallery-wrapper {
       display: flex;
-      width: 50%;
+      width: 100%;
       height: 350px;
       align-content: center;
       flex-wrap: wrap;
@@ -521,17 +709,24 @@
       }
 
       & li {
-        --preview-size: 100px;
+        --preview-size: 120px;
         width: var(--preview-size);
         height: var(--preview-size);
+
+        &:nth-child(odd) {
+          margin-right: calc(var(--base-gap) / 2);
+        }
 
         &:not(:last-child):not(:nth-last-of-type(2)) {
           margin-bottom: calc(var(--base-gap) / 2);
         }
+      }
 
-        /* &:not(:nth-child(4n)) {
-          margin-right: calc(var(--base-gap) / 2);
-        } */
+      & .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--light-grey);
       }
     }
 
@@ -545,6 +740,19 @@
 
     & .features-cloud .device-laptop {
       width: 300px;
+    }
+
+    & .features-roadmap {
+      margin-bottom: calc(2 * var(--base-gap));
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      & a {
+        margin-top: var(--base-gap);
+      }
     }
   }
 
